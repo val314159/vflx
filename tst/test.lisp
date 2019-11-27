@@ -1,4 +1,7 @@
 (require "asdf")
 (require "vflz")
 (format t "Success...~%")
-(quit)
+(in-package :v)
+(if2 1 2)
+(if3 1 2 3)
+(cl-user::quit)

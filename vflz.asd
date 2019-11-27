@@ -1,2 +1,3 @@
 (defsystem vflz :serial t :pathname "src" :components
-	   ((:file "package")))
+	   ((:file "package")
+	    (:file "macros")))
