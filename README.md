@@ -1,2 +1,2 @@
-# vflx
-very fine lisp x
+# vflz
+very fine lisp z
