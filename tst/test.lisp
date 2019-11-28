@@ -11,6 +11,6 @@
   print 100
   print 102
   print (10 + 5)
-  ¶
+    ¶
 
 <cl-user::quit>
