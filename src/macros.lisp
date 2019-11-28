@@ -9,6 +9,9 @@
 (defmacro :7 (x) `(elt ,x 7))
 (defmacro :8 (x) `(elt ,x 8))
 (defmacro :9 (x) `(elt ,x 9))
+(defmacro lm (x) `(lambda (&optional _1 _2 _3 _4 _5 _6 _7 _8 _9)
+		    (declare (ignorable _1 _2 _3 _4 _5 _6 _7 _8 _9))
+		    ,x))
 (defmacro a (&rest r) `(cl:apply   ,@r))
 (defmacro c (&rest r) `(cl:funcall ,@r))
 (defmacro n (&rest r) `(cl:progn   ,@r))
@@ -23,7 +26,7 @@
   `(let ((c ,c)) (if c (get-macro-character c))))
 (defmacro set-mchar (c x &optional y)
   `(set-macro-character
-    c (lambda    (&optional _1 _2 _3 _4 _5 _6 _7 _8 _9)
+    c (lambda (&optional _1 _2 _3 _4 _5 _6 _7 _8 _9)
 	(declare (ignorable _1 _2 _3 _4 _5 _6 _7 _8 _9))
 	,x)
     y))
