@@ -5,7 +5,5 @@
 (if2 1 2)
 (if3 1 2 3)
 (turn-it-on)
-(p. 'xp(list 1 2 3))
-(p. $xp(list 1 2 3))
-(p. $xp(, 4 5 6))
-(cl-user::quit)
+~p.(list(3,45))
+<cl-user::quit>
