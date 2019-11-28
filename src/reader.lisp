@@ -20,10 +20,14 @@
   (if (eq   (peekc s)  c) (eat-c s)
       (cons (readx s   c) (rdl c s))))
 
-(defun rnl (s)
+(defun xrnl (s)
   (read-wc s)
   (if (eq   (peekc s) NL)  nil
-      (cons (readx s  NL) (rnl   s))))
+      (cons (readx s  NL) (xrnl s))))
+
+(defun rnl (s)
+  (p- "RNL")
+  (p. (xrnl s)))
 
 (defun infix (x)
   (ecase (length x)
@@ -68,6 +72,14 @@
   (set-mchar TB  (values))
   (set-mchar FF  (values))
   (set-mchar VT  (values))
+  (set-mchar #\^ (loop
+		   :initially (read-ws _1)
+		   :collect   (rnl     _1)
+		   :do        (read-ws _1)
+			      (if (not (peekc _1))
+				  (return))
+			      (if (eq  (peekc _1) #\¶)
+				  (return (if (readc _1) nil)))))
   (set-mchar #\~ (readx _1))
   (set-mchar #\, '\,)
   (set-mchar #\( (infix (rdl #\) _1)))
@@ -80,6 +92,7 @@
 (defun turn-it-off ()
   (set-mchar #\( (read-delimited-list #\) _1))
   (set-mchar #\) (error ")"))
+  (set-macro-character #\^ nil)
   (set-macro-character #\; nil)
   (set-macro-character #\' nil)
   (set-macro-character #\$ nil)
