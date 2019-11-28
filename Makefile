@@ -1,0 +1,1 @@
+test: ; make -C tst
