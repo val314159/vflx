@@ -1,4 +1,5 @@
 (in-package :v)
+(defmacro cs (&rest r) `(concatenate 'string ,@r))
 (defmacro :0 (x) `(elt ,x 0))
 (defmacro :1 (x) `(elt ,x 1))
 (defmacro :2 (x) `(elt ,x 2))

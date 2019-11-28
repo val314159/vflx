@@ -22,7 +22,7 @@
 
 (defun xrnl (s)
   (read-wc s)
-  (if (eq   (peekc s) NL)  nil
+  (if (member (peekc s) (list #\¶ NL nil))  nil
       (cons (readx s  NL) (xrnl s))))
 
 (defun rnl (s)
@@ -72,11 +72,13 @@
   (set-mchar TB  (values))
   (set-mchar FF  (values))
   (set-mchar VT  (values))
-  (set-mchar #\^ (cons 'n (loop :initially (read-ws _1)
+  (set-mchar #\: (cons 'n (loop :initially (read-ws _1)
 				:collect   (rnl     _1)
 				:do        (read-ws _1)
 				:until     (member (peekc _1) '(#\¶ nil)))))
   (set-mchar #\¶ (values))
+  (set-mchar #\/ (values (intern (string-upcase (cs (read-sym _1))) "KEYWORD")))
+  (set-mchar #\! (rnl   _1))
   (set-mchar #\~ (readx _1))
   (set-mchar #\, '\,)
   (set-mchar #\( (infix (rdl #\) _1)))
