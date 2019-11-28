@@ -1,5 +1,11 @@
 (in-package :v)
 
+(defun f. (&rest r) (apply #'cl:format cl:t   r))
+(defun s. (&rest r) (apply #'cl:format cl:nil r))
+
+(defun p- (x &optional s) (cl:prin1 x s) (cl:princ " " s) x)
+(defun p. (x &optional s) (cl:prin1 x s) (cl:terpri    s) x)
+
 (defun readx (a &optional (b t) c d)
   (cl:read-preserving-whitespace a b c d))
 (defun peekc (s &optional  eof-p)
